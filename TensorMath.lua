@@ -120,7 +120,7 @@ local function wrap(...)
          end
       end
    end
-   method:wrap(unpack(args))
+   method:wrap(table.unpack(args))
 end
 
 local reals = {ByteTensor='unsigned char',

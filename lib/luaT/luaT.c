@@ -424,7 +424,7 @@ const char *luaT_classrootname(const char *tname)
   return tname;
 }
 
-/* module_name must be a buffer at least as big as tname 
+/* module_name must be a buffer at least as big as tname
  * return true if the class is part of a module */
 int luaT_classmodulename(const char *tname, char *module_name)
 {
@@ -451,9 +451,9 @@ int luaT_lua_newmetatable(lua_State *L)
   luaL_argcheck(L, lua_isnoneornil(L, 5) || lua_isfunction(L, 5), 5, "factory function or nil expected");
 
   if(is_in_module)
-    lua_getfield(L, LUA_GLOBALSINDEX, module_name);
+    lua_getglobal(L, module_name);
   else
-    lua_pushvalue(L, LUA_GLOBALSINDEX);
+    lua_pushglobaltable(L);
   if(!lua_istable(L, 6))
     luaL_error(L, "while creating metatable %s: bad argument #1 (%s is an invalid module name)", tname, module_name);
 
